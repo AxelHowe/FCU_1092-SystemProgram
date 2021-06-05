@@ -113,11 +113,13 @@ TEXT = ''
 while opcode != "END":
     if not ifComment():
         if opcode in OPTAB:
-            if operand in SYMTAB:
+            if opcode == 'AND' or opcode == 'OR':
+                objectCode = OPTAB[opcode] + operand.zfill(4)
+            elif operand in SYMTAB:
                 objectCode = OPTAB[opcode] + str(SYMTAB[operand])
             else:
                 objectCode = OPTAB[opcode] + '0000'
-                print(LOC + ' ' + operand + 'Error: 搜尋不到此operand')
+                print(LOC + ' ' + operand + ' Error: 搜尋不到此operand')
                 #error
         elif opcode == 'BYTE':
             if operand[0] == 'C':
@@ -155,3 +157,7 @@ else:
     OBJFILE.write('E%s\n' %( hex(SYMTAB[label])[2:].upper().zfill(6)))
 LISTFILE.write('%6s %-6s %s\n' % ( LOC, '', line))
 #end pass2
+
+print('done')
+import os
+os.system("PAUSE")

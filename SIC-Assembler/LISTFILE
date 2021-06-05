@@ -28,7 +28,7 @@
               . D=A-B
 001042 00106F          LDA     C                 
 001045 1C1072          SUB     D                 
-001048 400000          AND     1                 
+001048 400001          AND     1                 
               .        DIV     TWO
               .        MUL     TWO
               .        STA     TEMP
